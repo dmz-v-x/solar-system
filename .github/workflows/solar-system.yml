@@ -10,7 +10,7 @@ on:
 env:
   MONGO_USERNAME: ${{ vars.MONGO_USERNAME }}
   MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
-  MONGO_URI: 'mongodb+srv://${{ vars.MONGO_USERNAME }}:${{ secrets.MONGO_PASSWORD }}@cluster0.o3puy.mongodb.net/?retryWrites=true&w=majority&appName=cluster0'
+  MONGO_URI: 'mongodb+srv://supercluster.d83jj.mongodb.net/superData'
   
 
     
@@ -25,7 +25,7 @@ jobs:
       - name: Setup NodeJS Version
         uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: 18
     
       - name: Install Dependencies
         run: npm install
