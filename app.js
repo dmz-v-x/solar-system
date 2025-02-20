@@ -15,14 +15,16 @@ mongoose.connect(process.env.MONGO_URI, {
     user: process.env.MONGO_USERNAME,
     pass: process.env.MONGO_PASSWORD,
     useNewUrlParser: true,
-    useUnifiedTopology: true
-}, function(err) {
-    if (err) {
-        console.log("error!! " + err)
-    } else {
-      //  console.log("MongoDB Connection Successful")
-    }
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 30000,  // Increase timeout to 30 seconds
+    socketTimeoutMS: 45000  // Set socket timeout to 45 seconds
 })
+.then(() => {
+    console.log("MongoDB Connection Successful");
+})
+.catch(err => {
+    console.error("MongoDB Connection Error:", err);
+});
 
 var Schema = mongoose.Schema;
 
