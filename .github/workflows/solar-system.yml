@@ -8,8 +8,11 @@ on:
       - 'feature/*'
 
 env:
-  env:
-  MONGO_URI: 'mongodb+srv://${{ vars.MONGO_USERNAME }}:${{ secrets.MONGO_PASSWORD }}@cluster0.o3puy.mongodb.net/?retryWrites=true&w=majority&appName=cluster0'
+    MONGO_URI: 'mongodb+srv://${{ vars.MONGO_USERNAME }}:${{ secrets.MONGO_PASSWORD }}@cluster0.o3puy.mongodb.net/?retryWrites=true&w=majority&appName=cluster0'
+    MONGO_USERNAME: ${{ vars.MONGO_USERNAME }}
+    MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD}}
+
+
 
     
 jobs:
@@ -32,4 +35,3 @@ jobs:
           run: npm test
           
         
-          
