@@ -37,20 +37,25 @@ var dataSchema = new Schema({
 var planetModel = mongoose.model('planets', dataSchema);
 
 
+app.post('/planet', async function(req, res) {
+    try {
+        // Wait for the result of the findOne query
+        const planetData = await planetModel.findOne({ id: req.body.id });
 
-app.post('/planet',   function(req, res) {
-   // console.log("Received Planet ID " + req.body.id)
-    planetModel.findOne({
-        id: req.body.id
-    }, function(err, planetData) {
-        if (err) {
-            alert("Ooops, We only have 9 planets and a sun. Select a number from 0 - 9")
-            res.send("Error in Planet Data")
+        // Check if planetData is found
+        if (!planetData) {
+            // Handle case when no planet data is found (e.g., invalid ID)
+            res.status(404).send("Ooops, We only have 9 planets and a sun. Select a number from 0 - 9");
         } else {
+            // Send the found planet data as the response
             res.send(planetData);
         }
-    })
-})
+    } catch (err) {
+        // Catch and log any errors that occur during the operation
+        console.error(err);
+        res.status(500).send("Error in Planet Data");
+    }
+});
 
 app.get('/',   async (req, res) => {
     res.sendFile(path.join(__dirname, '/', 'index.html'));
