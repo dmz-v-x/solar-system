@@ -18,13 +18,14 @@ mongoose.connect(process.env.MONGO_URI, {
     useUnifiedTopology: true,
     serverSelectionTimeoutMS: 30000,
     socketTimeoutMS: 45000
-}, function(err) {
-    if (err) {
-        console.log("error!! " + err)
-    } else {
-        console.log("MongoDB Connection Successful")
-    }
 })
+.then(() => {
+    console.log("MongoDB Connection Successful");
+})
+.catch(err => {
+    console.log("MongoDB Connection Error:", err.message);
+});
+
 
 var Schema = mongoose.Schema;
 
