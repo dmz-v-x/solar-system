@@ -2,14 +2,14 @@ name: Publish Package to GitHub Npm Registry
 
 on:
   release:
-    types: [published]
+    types: published
 
 jobs:
   test-publish-package:
-    name: Test Publish Package
     runs-on: ubuntu-latest
     permissions:
       packages: write
+      contents: read
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
