@@ -86,6 +86,8 @@ jobs:
   docker:
     name: Containerize Application
     needs: [unit-testing, code-coverage]
+    permissions:
+      packages: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
